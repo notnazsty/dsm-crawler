@@ -1,0 +1,3 @@
+out/*
+build/*
+dsm_crawler.egg-info/*
