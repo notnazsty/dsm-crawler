@@ -1,5 +1,6 @@
 import json
 import csv
+import os
 
 def write_array_to_text_file(fileName, array):
     with open(fileName, 'w') as f:
@@ -8,6 +9,10 @@ def write_array_to_text_file(fileName, array):
 
 
 def write_item_links_to_csv(data):
+    output_dir = os.path.dirname("out/item_links.csv")
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
     with open("out/item_links.csv", mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['BrandName', 'ItemName', 'Link']) 
