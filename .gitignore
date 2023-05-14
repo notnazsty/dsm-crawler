@@ -2,9 +2,9 @@ out/*
 build/*
 out
 build
-dsm_crawler.egg-info/*
 .venv
 python_venv
 dist
 path
 *.egg-info
+__pycache__
