@@ -30,8 +30,6 @@ def insert_item(db, item):
         log("Item " + item['name'] + " already exists in the database. Updating the entry.")
         db.update(item, Entries.name == item['name'])
 
-        
-        print("UPDATED A VALUE")
         ## Handle situations where the data was updated
         handle_updated_item(previous_item, item)
 

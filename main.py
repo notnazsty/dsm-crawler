@@ -32,6 +32,7 @@ def main():
         while True:
             scrape_items(item_link_df, db)
             log("Sleeping for " + str(REFRESH_PRODUCT_INFO_TIME) + " seconds.")
+            notify("FINISHED SCRAPING ALL ITEMS","")
             time.sleep(REFRESH_PRODUCT_INFO_TIME)
 
     except IndexError as e:

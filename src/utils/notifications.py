@@ -2,7 +2,7 @@ from plyer import notification
 
 
 
-
+## Send a notification
 def notify(title, message):
     notification.notify(
         title=title,

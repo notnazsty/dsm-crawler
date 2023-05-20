@@ -95,6 +95,7 @@ def scrape_items(item_link_df,db):
 
        if (i % 10 == 0 or i == len(item_links) - 1):
             log("Extracted data from " + str(i) + " items so far.")
+            print("Extracted data from " + str(i) + " items so far.")
 
        if (data is not None):
            insert_item(db,data)
