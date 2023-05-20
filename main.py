@@ -1,3 +1,4 @@
+import time
 from src.scraping.links import  get_item_links, scrape_items
 from src.utils.log import log
 from src.utils.tinydb import initialize_db
@@ -7,6 +8,7 @@ from src.utils.notifications import notify
 
 
 RE_FETCH_ITEM_LINKS = False
+## I would recommend changing this value when you need to
 REFRESH_PRODUCT_INFO_TIME = 60 * 60  # 1 hour
 
 def main():
@@ -27,12 +29,10 @@ def main():
         else:
             log("Item links already exist, skipping item link scraping.")
 
-        scrape_items(item_link_df, db)
-
-
-        ## Update Loop Run A Callback Every X Seconds
-            ## run a data_analysis function to display the new data
-
+        while True:
+            scrape_items(item_link_df, db)
+            log("Sleeping for " + str(REFRESH_PRODUCT_INFO_TIME) + " seconds.")
+            time.sleep(REFRESH_PRODUCT_INFO_TIME)
 
     except IndexError as e:
         log("An Error has occured: " + str(e) + ", the scraper is now shutting down.")
