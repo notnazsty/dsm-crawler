@@ -39,7 +39,7 @@ def main():
 
 
     log("DSM Crawler has shut down.")
-    notify("DSM Crawler has started up.","")
+    notify("DSM Crawler has shut down.","")
 
 
 
