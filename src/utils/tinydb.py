@@ -1,13 +1,15 @@
 from tinydb import TinyDB, Query
 from src.utils.log import log
+from src.utils.notifications import notify
 
 def initialize_db():
-    log("Initializing the database...")
-    db = TinyDB('out/db.json')
+    log(f"Initializing the databases ...")
+    db = TinyDB("out/db.json")
     return db
 
 
-def insert_item(db,item):
+
+def insert_item(db, item):
     Entries = Query()
     if (db is None):
         log("The database is not initialized. Please call initialize_db() before inserting items.")
@@ -30,9 +32,22 @@ def insert_item(db,item):
 
         
         print("UPDATED A VALUE")
-        ## Handle situations where the data was updates
+        ## Handle situations where the data was updated
+        handle_updated_item(previous_item, item)
 
         return
 
     log("Inserting " + item['name']+ " into the database.")
     db.insert(item)
+
+
+
+def handle_updated_item(previous_item, item):
+    try:
+        price_diff = previous_item["offers"][0]["price"] - item["offers"][0]["price"]
+        if (price_diff > 0):
+            print("PRICE DECREASED")
+            log("The price of " + item['name'] + " has decreased by " + str(price_diff) + " dollars.")
+            notify("PRICE CHANGE","The price of " + item['name'] + " has decreased by " + str(price_diff) + " dollars.")
+    except Exception as e:
+        log("An error occured while handling an updated item: " + str(e))

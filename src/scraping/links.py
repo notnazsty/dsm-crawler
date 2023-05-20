@@ -65,7 +65,7 @@ def get_individual_item_info(item_link):
                 return normalize_json_data(current_tag)
         except Exception as e:
             log("An error occured while trying to parse the JSON data for " + item_link + ". The error was: " + str(e)) 
-            log("The JSON data was: " + current_tag)
+            log("The JSON data was: " + json.dumps(current_tag))
             return None
         
 def normalize_json_data(json_data):
@@ -85,10 +85,8 @@ def normalize_json_data(json_data):
     normalized_data["hash"] = json_hash
     return normalized_data
 
-def scrape_items(db): 
-    log("Loading item links from out/item_links.csv")
-    df = read_file_as_df('out/item_links.csv')
-    item_links = df['Link'].to_list()[1:]
+def scrape_items(item_link_df,db): 
+    item_links = item_link_df['Link'].to_list()[1:]
 
     log("Starting to extract data from " + str(item_links.__len__()) + " items.")
     for i in range(len(item_links)):
