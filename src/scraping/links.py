@@ -25,7 +25,7 @@ def get_brand_links():
 
         for link in letter_container.find_all('a'):
             brand_links.append(link['href'].replace("/collections/", ""))
-    
+    print ("brand_links",brand_links)
     return brand_links
 
 
@@ -48,7 +48,7 @@ def get_item_links():
         for item in items:
             item_name = item['href'].replace(f"/collections/{brand}/products/","")
             item_links.append((brand,item_name,'https://shop-us.doverstreetmarket.com/' + item["href"]))
-
+    print("item_links",item_links)
     return item_links
 
 def get_individual_item_info(item_link):

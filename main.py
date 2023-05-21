@@ -22,7 +22,7 @@ def main():
         item_link_df = read_file_as_df('out/item_links.csv')
 
 
-        if item_link_df.shape[1] == 0 or RE_FETCH_ITEM_LINKS:
+        if  item_link_df is None or item_link_df.shape[1] == 0 or RE_FETCH_ITEM_LINKS:
             items_links = get_item_links()
             write_item_links_to_csv(items_links)
             item_link_df = read_file_as_df('out/item_links.csv')
