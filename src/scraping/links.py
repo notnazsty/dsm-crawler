@@ -67,7 +67,8 @@ def get_individual_item_info(item_link):
             log("An error occured while trying to parse the JSON data for " + item_link + ". The error was: " + str(e)) 
             log("The JSON data was: " + json.dumps(current_tag))
             return None
-        
+
+## Take the json object for the product data and turn it into a singular format   
 def normalize_json_data(json_data):
     normalized_data = {}
 
@@ -85,6 +86,8 @@ def normalize_json_data(json_data):
     normalized_data["hash"] = json_hash
     return normalized_data
 
+
+## code to scrape the data of a list of products from a dataframe
 def scrape_items(item_link_df,db): 
     item_links = item_link_df['Link'].to_list()[1:]
 

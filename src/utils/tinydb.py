@@ -8,7 +8,7 @@ def initialize_db():
     return db
 
 
-
+## checks if the item exists in the database and if not it inserts it, if it exists then it checks if the hash is the same and if not it updates the entry
 def insert_item(db, item):
     Entries = Query()
     if (db is None):
@@ -39,7 +39,7 @@ def insert_item(db, item):
     db.insert(item)
 
 
-
+## if a price change is detected, send a notification
 def handle_updated_item(previous_item, item):
     try:
         price_diff = previous_item["offers"][0]["price"] - item["offers"][0]["price"]
